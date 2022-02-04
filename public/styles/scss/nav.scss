@@ -1,0 +1,63 @@
+$white: #E6E6E6;
+
+.nav {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  padding-inline: 100px;
+  .nav-ident {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: $white;
+    user-select: none;
+    text-decoration: none;
+    cursor: pointer;
+    .nav-logo{   
+      width: 60px;
+      height: 60px;
+      margin-inline: 10px; 
+    }
+    .nav-title {
+      // left: 17.5%;
+      font-family: 'Alfa Slab One', cursive;
+      font-weight: 100;
+      font-size: 35px;
+      text-shadow: 0 0 4px white;
+    }
+  }
+  .nav-menu {
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    & a {
+      color: $white;
+      text-decoration: none;
+    }
+    .nav-item {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      font-variant: small-caps;
+      cursor: pointer;
+      transform: scaleX(115%);
+      text-shadow: 0 0 2px $white;
+      user-select: none;
+      .nav-item-cart {
+        width: 50px;
+        height: 50px;
+        filter: invert(90%);
+      }
+    }
+  }
+}

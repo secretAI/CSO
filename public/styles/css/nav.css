@@ -1,0 +1,101 @@
+.nav {
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #333;
+  padding-inline: 100px;
+}
+
+.nav .nav-ident {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #E6E6E6;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav .nav-ident .nav-logo {
+  width: 60px;
+  height: 60px;
+  margin-inline: 10px;
+}
+
+.nav .nav-ident .nav-title {
+  font-family: 'Alfa Slab One', cursive;
+  font-weight: 100;
+  font-size: 35px;
+  text-shadow: 0 0 4px white;
+}
+
+.nav .nav-menu {
+  width: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  list-style: none;
+}
+
+.nav .nav-menu a {
+  color: #E6E6E6;
+  text-decoration: none;
+}
+
+.nav .nav-menu .nav-item {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  font-variant: small-caps;
+  cursor: pointer;
+  -webkit-transform: scaleX(115%);
+          transform: scaleX(115%);
+  text-shadow: 0 0 2px #E6E6E6;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.nav .nav-menu .nav-item .nav-item-cart {
+  width: 50px;
+  height: 50px;
+  -webkit-filter: invert(90%);
+          filter: invert(90%);
+}

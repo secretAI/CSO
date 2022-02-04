@@ -1,0 +1,41 @@
+{
+  "name": "cso-pet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.ts",
+  "module": "commonjs",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "nodemon -x ts-node ./app.ts",
+    "lint": "eslint . --ext .ts"
+  },
+  "keywords": [
+    "web",
+    "ts",
+    "express",
+    "mongodb"
+  ],
+  "author": "SecretAI",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.14",
+    "body-parser": "^1.19.1",
+    "dotenv": "^15.0.0",
+    "express": "^4.17.2",
+    "isomorphic-fetch": "^3.0.0",
+    "mongoose": "^6.2.0",
+    "pug": "^3.0.2",
+    "typescript": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/isomorphic-fetch": "^0.0.35",
+    "@typescript-eslint/eslint-plugin": "^5.10.2",
+    "@typescript-eslint/parser": "^5.10.2",
+    "eslint": "^8.8.0",
+    "nodemon": "^2.0.15",
+    "ts-loader": "^9.2.6",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
