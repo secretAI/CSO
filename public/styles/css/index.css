@@ -2,11 +2,39 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 100%;
   min-height: 100%;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main .main-candy {
+  position: absolute;
+  width: 300px;
+  -webkit-filter: opacity(0.6);
+          filter: opacity(0.6);
+  bottom: 7.5%;
+}
+
+.main #candy1 {
+  bottom: 17.5%;
+  left: 0;
+  -webkit-transform: rotate(-20deg);
+          transform: rotate(-20deg);
+}
+
+.main #candy2 {
+  left: 12%;
+  width: 340px;
+  -webkit-filter: none;
+          filter: none;
+  -webkit-transform: rotate(20deg) scale(-1, 1);
+          transform: rotate(20deg) scale(-1, 1);
 }
 
 .main .main-wrapper {
@@ -15,8 +43,10 @@
   display: -ms-flexbox;
   display: flex;
   width: 80%;
-  height: 1000px;
-  margin-top: 70px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-top: 40px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -30,19 +60,19 @@
 
 .main .main-wrapper .main-title {
   font-size: 56px;
-  opacity: 0;
-  -webkit-transition: all 0.5s ease 0s;
-  transition: all 0.5s ease 0s;
 }
 
 .main .main-wrapper #mainText {
-  opacity: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   font-weight: 600;
   margin-top: 20px;
   font-size: 32px;
-  max-width: 700px;
-  -webkit-transition: 0.6s ease 0s;
-  transition: 0.6s ease 0s;
 }
 
 .main .main-wrapper #mainText .main-text {
@@ -55,9 +85,6 @@
 }
 
 .main .main-wrapper .main-pressme {
-  opacity: 0;
-  -webkit-transition: 0.7s ease 0s;
-  transition: 0.7s ease 0s;
   margin-top: 25px;
   text-align: center;
   font-family: 'Raleway', sans-serif;
@@ -77,24 +104,70 @@
   color: #646464;
 }
 
-.main .main-wrapper .main-candy {
+.main #sectionTwo {
+  position: relative;
+  width: 1000px;
+  height: 550px;
+  margin-top: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.main #sectionTwo .main-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: left;
+      -ms-flex-align: left;
+          align-items: left;
+  text-align: left;
+  max-width: 80%;
+  padding: 20px;
+  border-radius: 15px;
+  text-shadow: 0 0 2px white;
+}
+
+.main #sectionTwo .main-container:first-child {
+  border: 4px solid white;
+}
+
+.main #sectionTwo .main-container:first-child::before {
+  content: "";
   position: absolute;
-  -webkit-filter: opacity(0.6);
-          filter: opacity(0.6);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-image: url(../../img/blockbg.jpg);
+  -webkit-filter: blur(4px);
+          filter: blur(4px);
+  background-size: 130%;
+  z-index: 0;
 }
 
-.main .main-wrapper #candy1 {
-  width: 300px;
-  bottom: 30%;
-  left: 30px;
-  -webkit-transform: rotate(10deg);
-          transform: rotate(10deg);
+.main #sectionTwo .main-container .main-subtitle {
+  font-size: 50px;
+  z-index: 1;
 }
 
-.main .main-wrapper #candy2 {
+.main #sectionTwo .main-container .main-subtext {
+  font-weight: 600;
+  margin-top: 20px;
+  font-size: 28px;
+  z-index: 1;
+}
+
+.main #sectionTwo .main-container .main-pressme {
+  z-index: 1;
+}
+
+.main #sectionTwo .main-subcandy {
   width: 300px;
-  bottom: 30%;
-  right: 30px;
-  -webkit-transform: rotate(-10deg);
-          transform: rotate(-10deg);
 }

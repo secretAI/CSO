@@ -1,11 +1,11 @@
 import { connectToDB } from "./models/connect";
 import { notify } from "./config/notify";
 import { getEnv } from "./config/env";
+import { Application } from "./interfaces";
 const host: string = getEnv("HOST");
 const port: string = getEnv("PORT");
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function startServer(target: any) {
+export async function startServer(target: Application) {
   await connectToDB();
   target.listen(port, () => {
     console.log(notify());

@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+ul, ol {
+  list-style: none;
+}
+
 body {
   min-height: 100vh;
   scroll-behavior: smooth;
@@ -12,6 +16,20 @@ body {
   background-color: rgb(255, 235, 215);
 }
 
-ul, ol {
-  list-style: none;
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-button {
+  display: none;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: rgb(180, 180, 180);
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  height: 10%;
+  background-color: rgb(120, 120, 120);
 }

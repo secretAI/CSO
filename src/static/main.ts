@@ -1,5 +1,6 @@
 import { renderData } from "./render";
-
 console.log("* App has started *");
 
-renderData();
+if(window.location.pathname === "/goods") {
+  renderData();
+}

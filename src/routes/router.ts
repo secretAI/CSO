@@ -9,10 +9,15 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/", async (req, res) => {
+router.get("/goods", (req, res) => {
+  res.render("layouts/goods", {
+    pageTitle: "MySweetBox - Каталог"
+  });
+});
+
+router.post("/goods", async (req, res) => {
   console.log(req.body);
   const response = await Box.findOne(req.body);
-  console.log(response.title, response.count);
   return res.json(response);
 });
 
