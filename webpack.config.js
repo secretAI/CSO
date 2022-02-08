@@ -2,10 +2,14 @@
 const path = require("path");
 
 const config = {
-  entry: "./src/static/main.ts",
+  entry: {
+    bundle: "./src/static/main.ts",
+    login: "./src/static/login.ts",
+    goods: "./src/static/render.ts"
+  },
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist")
+    filename: "[name].js",
+    path: path.resolve(__dirname, "public/js")
   },
   module: {
     rules: [

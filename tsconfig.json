@@ -5,7 +5,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "esModuleInterop": true,
-    "outDir": "dist",
+    "outDir": "public/js",
     "rootDir": "src",
     "strict": true,
     "lib": [
@@ -15,6 +15,5 @@
       "DOM"
     ]
   },
-  "include": ["src/static"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "src/static/main.ts", "app.ts"],
 }

@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { Box } from "../models/model";
+import { Box, User } from "../models/models";
+import { signup } from "../controllers/auth";
 
 const router = Router();
 
@@ -15,10 +16,18 @@ router.get("/goods", (req, res) => {
   });
 });
 
+router.get("/login", (req, res) => {
+  res.render("layouts/login", {
+    pageTitle: "MySweetBox - Вход"
+  });
+});
+
 router.post("/goods", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const response = await Box.findOne(req.body);
   return res.json(response);
 });
+
+router.post("/login", signup);
 
 export default router;

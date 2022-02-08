@@ -34,11 +34,11 @@ $white: #E6E6E6;
     }
   }
   .nav-menu {
-    width: 25%;
+    width: 30%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     list-style: none;
     & a {
       color: $white;
@@ -53,10 +53,16 @@ $white: #E6E6E6;
       transform: scaleX(115%);
       text-shadow: 0 0 2px $white;
       user-select: none;
-      .nav-item-cart {
+      .nav-item-cart,
+      .nav-item-profile {
         width: 50px;
         height: 50px;
+        transform: scale(.85);
         filter: invert(90%);
+        margin-inline: -17.5px;
+      }
+      .nav-item-profile {
+        height: 60px;
       }
     }
   }

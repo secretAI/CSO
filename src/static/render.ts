@@ -13,7 +13,7 @@ const sTitle = document.getElementById("sTitle");
 const sCount = document.getElementById("sCount");
 const sPrice = document.getElementById("sPrice");
 
-export async function renderData(): Promise<void> {
+async function renderData(): Promise<void> {
   const jResponse: any = await sendRequest("/goods", {title: "Junior Box"});
   if(jTitle && jCount && jPrice) {
     jTitle.innerText = jResponse.title;
@@ -33,3 +33,6 @@ export async function renderData(): Promise<void> {
     sPrice.innerText = sResponse.price;
   }
 }
+
+console.log(sTitle, jCount, mPrice);
+renderData();

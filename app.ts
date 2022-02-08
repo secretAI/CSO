@@ -5,7 +5,6 @@ import { startServer } from "./src/start";
 
 const app = express();
 
-app.use("/dist", express.static("dist"));
 app.use("/public", express.static("public"));
 app.set("view engine", "pug");
 app.use(bodyParser.json());
