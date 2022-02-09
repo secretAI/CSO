@@ -4,7 +4,7 @@ const path = require("path");
 const config = {
   entry: {
     bundle: "./src/static/main.ts",
-    login: "./src/static/login.ts",
+    signup: "./src/static/signup.ts",
     goods: "./src/static/render.ts"
   },
   output: {

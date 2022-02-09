@@ -8,6 +8,7 @@
     "outDir": "public/js",
     "rootDir": "src",
     "strict": true,
+    "strictNullChecks": false,
     "lib": [
       "ES7",
       "ESNext.AsyncIterable",

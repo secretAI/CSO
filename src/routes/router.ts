@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { Box, User } from "../models/models";
-import { signup } from "../controllers/auth";
+import { Auth } from "../controllers/auth";
+import { getProducts } from "../controllers/getprods";
 
 const router = Router();
 
@@ -16,18 +16,20 @@ router.get("/goods", (req, res) => {
   });
 });
 
+router.get("/signup", (req, res) => {
+  res.render("layouts/signup", {
+    pageTitle: "MySweetBox - Регистрация"
+  });
+});
+
 router.get("/login", (req, res) => {
   res.render("layouts/login", {
     pageTitle: "MySweetBox - Вход"
   });
 });
 
-router.post("/goods", async (req, res) => {
-  // console.log(req.body);
-  const response = await Box.findOne(req.body);
-  return res.json(response);
-});
+router.post("/goods", getProducts);
 
-router.post("/login", signup);
+router.post("/signup", Auth.signUp);
 
 export default router;

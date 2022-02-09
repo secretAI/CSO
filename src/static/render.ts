@@ -1,38 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { sendRequest } from "../controllers/sendreq";
 
-const jTitle = document.getElementById("jTitle");
-const jCount = document.getElementById("jCount");
-const jPrice = document.getElementById("jPrice");
+const subtitles: HTMLCollection = document.getElementsByClassName("goods-subtitle");
+const counts: HTMLCollection = document.getElementsByClassName("goods-count");
+const prices: HTMLCollection = document.getElementsByClassName("goods-price");
 
-const mTitle = document.getElementById("mTitle");
-const mCount = document.getElementById("mCount");
-const mPrice = document.getElementById("mPrice");
-
-const sTitle = document.getElementById("sTitle");
-const sCount = document.getElementById("sCount");
-const sPrice = document.getElementById("sPrice");
-
-async function renderData(): Promise<void> {
-  const jResponse: any = await sendRequest("/goods", {title: "Junior Box"});
-  if(jTitle && jCount && jPrice) {
-    jTitle.innerText = jResponse.title;
-    jCount.innerText = jResponse.count;
-    jPrice.innerText = jResponse.price;
-  }
-  const mResponse: any = await sendRequest("/goods", {title: "Middle Box"});
-  if (mTitle && mCount && mPrice) {
-    mTitle.innerText = mResponse.title;
-    mCount.innerText = mResponse.count;
-    mPrice.innerText = mResponse.price;
-  }
-  const sResponse: any = await sendRequest("/goods", {title: "Senior Box"});
-  if (sTitle && sCount && sPrice) {
-    sTitle.innerText = sResponse.title;
-    sCount.innerText = sResponse.count;
-    sPrice.innerText = sResponse.price;
+async function renderProducts(): Promise<void> {
+  const response = await sendRequest("/goods", {});
+  console.log(response);
+  for(let i = 0; i < response.body.length; i++) {
+    subtitles[i].innerHTML = response.body[i].title;
+    counts[i].innerHTML = response.body[i].count;
+    prices[i].innerHTML = response.body[i].price;
   }
 }
 
-console.log(sTitle, jCount, mPrice);
-renderData();
+renderProducts();
