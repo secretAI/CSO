@@ -1,7 +1,7 @@
-import { sendRequest } from "../controllers/sendreq";
-import { isUsernameValid } from "../config/validation";
-import { isEmailValid } from "../config/validation";
-import { setStatus } from "../config/status";
+// import { sendAxiosRequest } from "../controllers/sendreq";
+// import { isUsernameValid } from "../config/validation";
+// import { isEmailValid } from "../config/validation";
+import { setStatus } from "../tools/status";
 const inputs: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
 const submit: HTMLElement | null = document.getElementById("submit");
 const status: HTMLElement | null = document.getElementById("status");
@@ -9,7 +9,6 @@ const status: HTMLElement | null = document.getElementById("status");
 const defaultBehavior: string[] = ["Имя", "Почта: email@email.com", "Пароль", "Повторите пароль"];
 
 submit?.addEventListener("click", async () => {
-  isEmailValid("vesselevp@gmail.com");
   // let username = inputs[0].value;
   // if(!isUsernameValid(username)) {
   //   username = "";
@@ -44,36 +43,36 @@ submit?.addEventListener("click", async () => {
   // }
 });
 
-function isUserNameOk() {
-  let username = inputs[0].value;
-  if(!isUsernameValid(username)) {
-    username = "";
-    setStatus(status, "red", "Имя содержит запрещенные символы или короче 4-ех символов");
-  } else if (username.length < 4) {
-    username = "";
-    setStatus(status, "red", "Имя короче 4-ех символов");
-  } else {
-    return username;
-  }
-}
+// function isUserNameOk() {
+//   let username = inputs[0].value;
+//   if(!isUsernameValid(username)) {
+//     username = "";
+//     setStatus(status, "red", "Имя содержит запрещенные символы или короче 4-ех символов");
+//   } else if (username.length < 4) {
+//     username = "";
+//     setStatus(status, "red", "Имя короче 4-ех символов");
+//   } else {
+//     return username;
+//   }
+// }
 
-function isEmailOk() {
-  let email = inputs[1].value;
-  if(!isEmailValid(email)) {
-    email = "";
-    setStatus(status, "red", "Email некорректен");
-  } else {
-    return email;
-  }
-}
+// function isEmailOk() {
+//   let email = inputs[1].value;
+//   if(!isEmailValid(email)) {
+//     email = "";
+//     setStatus(status, "red", "Email некорректен");
+//   } else {
+//     return email;
+//   }
+// }
 
-function arePassesOk() {
-  let pass = inputs[2].value;
-  let repass = inputs[3].value;
-  if(pass.length > 8 && pass === repass) {
-    return pass;
-  } else {
-    pass = repass = "";
-    setStatus(status, "red", "Пароли не совпадают");
-  }
-}
+// function arePassesOk() {
+//   let pass = inputs[2].value;
+//   let repass = inputs[3].value;
+//   if(pass.length < 8 || pass !== repass) {
+//     pass = repass = "";
+//     setStatus(status, "red", "Пароли не совпадают");
+//   } else {
+//     return pass;
+//   }
+// }

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { getEnv } from "../config/env";
+import { getEnv } from "./tools/env";
 
 const uri: string = getEnv("MONGO_URI");
 const options: object = {useNewUrlParser: true};

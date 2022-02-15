@@ -1,8 +1,14 @@
 CSO
 Web Application introducing online-shop using Express, MongoDB, TypeScript.
 
-That's the order to make things work:
-
-npm i + npm run build - Webpack will build a single JS file called "bundle" in a "dist" directory. This script is connected to every single template. In order to improve the performance some of the scripts included in it only run in several cases.
-npm run dev - Express server would run only after successful MongoDB connection and only if all ENV keys are available(src/config/env.ts should handle it right). If all conditions are met, there would be no trouble.
-P.S: that's just a description of action sequence and you wouldn't be able to run this one without your own MongoDB connection-link and a few ENV keys (host, port)
+Staff that I've already done: 
+  - Connected to a MongoDB Cloud DataBase with Mongoose;
+  - Done with rendering goods on client with one query (which was hard for me at the beggining);
+  - Established Webpack which is used for transpiling several TS files to JS (client only);
+  - Sign up option using nodemailer email confirmation via link (gmail only);
+  - Generating 2 JWT tokens (Access and Refresh);
+  
+Staff that I'll add soon: 
+  - Login option, token refresh option;
+  - Admin panel with some functionality (Database access from web, getting a list of all users, etc..);
+  - Shopping cart 

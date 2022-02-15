@@ -32,4 +32,14 @@ router.post("/goods", getProducts);
 
 router.post("/signup", Auth.signUp);
 
+router.post("/login", Auth.logIn);
+
+router.post("/logout", Auth.logOut);
+
+router.get("/activate/:link", Auth.activate);
+
+router.get("/refresh");
+
+router.get("/users", Auth.getUsers);
+
 export default router;

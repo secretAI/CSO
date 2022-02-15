@@ -1,14 +1,13 @@
-import { connectToDB } from "./models/connect";
-import { notify } from "./config/notify";
-import { getEnv } from "./config/env";
-import { IApplication } from "./interfaces";
+import { connectToDB } from "./connect";
+import { getEnv } from "./tools/env";
+import { IApplication } from "./tools/interfaces";
 const host: string = getEnv("HOST");
 const port: string = getEnv("PORT");
 
 export async function startServer(target: IApplication) {
   await connectToDB();
   target.listen(port, () => {
-    console.log(notify());
+    console.log(`[${new Date().toLocaleTimeString()}]`);
     console.log(`App has started...
     ( http://${host}:${port}/ )`);
   });
