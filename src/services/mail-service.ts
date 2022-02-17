@@ -1,6 +1,5 @@
 import nodemailer from "nodemailer";
 import { getEnv } from "../tools/env";
-import { User } from "../models/user-model";
 
 const transporter = nodemailer.createTransport({
   host: getEnv("SMTP_HOST"),
@@ -17,10 +16,12 @@ export const MailService = {
     await transporter.sendMail({
       from: getEnv("SMTP_USER"),
       to: to,
-      subject: `Активация бесплатного аккаунта на ${getEnv("SERVICE_URL")}`,
+      subject: `[${getEnv("SERVICE_URL")}] Активация бесплатного аккаунта`,
       text: "",
-      html: `<h1>Для активации аккаунта перейдите по ссылке:</h1>
-      <a href="${link}" style="font-size:22px;text-decoration:none;color:black">Активировать аккаунт</a>`   
+      html: `<div style="margin:0;width:100%;padding:3px;font-family:monospace;background-color:#333;">
+      <h1 style="font-size:25px;color:#E6E6E6;margin-inline:5px;display:inline;">Для активации аккаунта перейдите по ссылке:</h1>
+      <a href="${link}" style="font-size:25px;text-decoration:none;color:#E6E6E6;margin-inline:5px;display:inline;">Активировать аккаунт</a>
+      </div>`
     });
   }
 };

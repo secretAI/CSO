@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { getEnv } from "../tools/env";
-import { Token } from "../models/token-model";
+import { Token } from "../models/Token";
 
 const jwtSecret: string = getEnv("JWT_SECRET");
 const jwtRefresh: string = getEnv("JWT_REFRESH");
@@ -27,5 +27,26 @@ export const TokenService = {
     }
     const token = await Token.create({user: userId, reToken: refreshToken});
     return token;
+  },
+
+  async removeToken(refreshToken: string) {
+    const result = await Token.deleteOne({refreshToken});
+    return result;
+  },
+
+  validateToken(token: string, envSecret: string) {
+    try {
+      const result = jwt.verify(token, getEnv(envSecret));
+      return result;
+    }
+    catch(err) {
+      console.log(err);
+      return null;
+    }
+  },
+
+  async findToken(refreshToken: string) {
+    const result = await Token.findOne({refreshToken});
+    return result;
   }
 };

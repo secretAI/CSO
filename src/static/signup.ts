@@ -1,7 +1,7 @@
 // import { sendAxiosRequest } from "../controllers/sendreq";
 // import { isUsernameValid } from "../config/validation";
 // import { isEmailValid } from "../config/validation";
-import { setStatus } from "../tools/status";
+import { setTextStatus } from "../tools/text-status";
 const inputs: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
 const submit: HTMLElement | null = document.getElementById("submit");
 const status: HTMLElement | null = document.getElementById("status");

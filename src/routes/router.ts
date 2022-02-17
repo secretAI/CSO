@@ -1,6 +1,7 @@
 import { Router } from "express";
+import { body } from "express-validator";
 import { Auth } from "../controllers/auth";
-import { getProducts } from "../controllers/getprods";
+import { Web } from "../controllers/web";
 
 const router = Router();
 
@@ -28,9 +29,12 @@ router.get("/login", (req, res) => {
   });
 });
 
-router.post("/goods", getProducts);
+router.post("/goods", Web.getProducts);
 
-router.post("/signup", Auth.signUp);
+router.post("/signup", 
+  body("email").isEmail(),
+  body("password").isLength({min: 4, max: 32}),
+  Auth.signUp);
 
 router.post("/login", Auth.logIn);
 
@@ -38,7 +42,7 @@ router.post("/logout", Auth.logOut);
 
 router.get("/activate/:link", Auth.activate);
 
-router.get("/refresh");
+router.get("/refresh", Auth.refresh);
 
 router.get("/users", Auth.getUsers);
 
