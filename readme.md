@@ -1,14 +1,24 @@
-CSO
-Web Application introducing online-shop using Express, MongoDB, TypeScript.
+[CSO] - Web Application introducing online-shop with separated client and server side.
 
-Staff that I've already done: 
-  - Connected to a MongoDB Cloud DataBase with Mongoose;
-  - Done with rendering goods on client with one query (which was hard for me at the beggining);
-  - Established Webpack which is used for transpiling several TS files to JS (client only);
-  - Sign up option using nodemailer email confirmation via link (gmail only);
-  - Generating 2 JWT tokens (Access and Refresh);
-  
-Staff that I'll add soon: 
-  - Login option, token refresh option;
-  - Admin panel with some functionality (Database access from web, getting a list of all users, etc..);
-  - Shopping cart 
+SERVER.
+Stack: 
+  - Typescript (with Eslint);
+  - MongoDB + Mongoose;
+  - Express;
+  - Nodemailer.
+
+What have I done already:
+  - DB Models;
+  - Routing;
+  - Error Handling with custom Error classes;
+  - Services;
+  - Authorization with pair of JWTs. Sign Up with activation via gmail. Token refresh option for every auth'ed user. Possibility of getting a list of all users while having some permissions (authorized + admin).
+
+CLIENT. 
+Stack: 
+  - Typescript (with Eslint);
+  - Vue3;
+  - Pug templating + SCSS;
+
+Got nothing to show you yet, but stay tuned..
+
