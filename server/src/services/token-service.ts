@@ -2,12 +2,12 @@ import jwt from "jsonwebtoken";
 import { getEnv } from "../tools/env";
 import { Token } from "../models/Token";
 
-const jwtSecret: string = getEnv("JWT_SECRET");
+const jwtAccess: string = getEnv("JWT_SECRET");
 const jwtRefresh: string = getEnv("JWT_REFRESH");
 
 export const TokenService = {
   generateTokens(payload: object) {
-    const accessToken = jwt.sign({payload}, jwtSecret, {
+    const accessToken = jwt.sign({payload}, jwtAccess, {
       expiresIn: 1800000 //30min
     });
     const refreshToken = jwt.sign({payload}, jwtRefresh, {

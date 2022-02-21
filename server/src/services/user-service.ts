@@ -9,6 +9,16 @@ import { ApiError } from "../exceptions/api-errors";
 import { TokenTypes } from "../tools/enums";
 
 export const UserService = {
+  async bindTokens(user: object) {
+    const userDto = new UserDto(user);
+    const tokens = TokenService.generateTokens({...userDto});
+    await TokenService.saveToken(userDto.id, tokens.refreshToken);
+    return {
+      ...tokens,
+      user: userDto
+    };
+  },
+
   async signUp(email: string, password: string) {
     const result = await User.findOne({email});
     if(result) {
@@ -20,7 +30,7 @@ export const UserService = {
     const activationLink = uuidv4();
     const user = await User.create({email, password: _password, activationLink});
     await MailService.sendActivation(email, `${getEnv("SERVICE_URL")}/activate/${activationLink}`);
-    return bindTokens(user);
+    return this.bindTokens(user);
   },
 
   async applyActivation(activationLink: string) {
@@ -41,7 +51,7 @@ export const UserService = {
     if(!arePassesEqual) {
       throw ApiError.requestError("Неверный пароль");
     }
-    return bindTokens(result);
+    return this.bindTokens(result);
   },
 
   async logOut(refreshToken: string) {
@@ -59,16 +69,6 @@ export const UserService = {
       throw ApiError.authError();
     }
     const user = User.findById(result.id);
-    return bindTokens(user);
-  }, 
+    return this.bindTokens(user);
+  }
 };
-
-async function bindTokens(user: object) {
-  const userDto = new UserDto(user);
-  const tokens = TokenService.generateTokens({...userDto});
-  await TokenService.saveToken(userDto.id, tokens.refreshToken);
-  return {
-    ...tokens,
-    user: userDto
-  };
-}

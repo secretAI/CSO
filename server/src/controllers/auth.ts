@@ -2,7 +2,6 @@
 import { validationResult } from "express-validator";
 import { UserService } from "../services/user-service";
 import { ApiError } from "../exceptions/api-errors";
-import { AdminService } from "../services/admin-service";
 
 export const Auth = {
   async signUp(req: any, res: any, next: any) {
@@ -66,27 +65,11 @@ export const Auth = {
     try {
       const {reToken} = req.cookies;
       console.log(req.cookies);
-      const userData = await UserService.refresh(reToken);
-      return res.status(200).json(userData);
-    }
-    catch(err) {
-      next(err);
-    }
-  },
-
-  async getUsers(req: any, res: any, next: any) {
-    try {
-      const {email} = req.body;
-      const isRightful = await AdminService.isRightful(email);
-      if(!isRightful) {
-        throw ApiError.requestError("Недостаточно прав");
-      }
-      const users = await AdminService.getAllUsers();
-      return res.status(200).json(users);
+      const newToken = await UserService.refresh(reToken);
+      return res.status(200).json(newToken);
     }
     catch(err) {
       next(err);
     }
   }
-
 };

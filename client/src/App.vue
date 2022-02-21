@@ -1,131 +1,71 @@
 <template lang="pug">
-form(@submit.prevent)
-  input(type="text", v-bind:value="title", @input="title = $event.target.value", placeholder="Title")
-  input(type="text", v-bind:value="about", @input="about = $event.target.value", placeholder="About")
-  button(id="pressme", @click="createPost") Create New
-div(class="container")
-  div(class="wrapper", v-for="post in posts")
-    h1(id="title") {{post.title}}
-    h3(id="about") {{post.about}}
+div(id="app")
+  router-view
+  button(id="pressme" @click.prevent="getProds") GetGoods
+  div(class="container")
+    div(v-for="prod in prods")
+      h2 Наименование: {{prod.title}}
+      h4 Количество на складе: {{prod.count}}
+      h4 Стоимость: {{prod.price}}
+
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
-      posts: [
-        {
-          id: 1, 
-          title: "JavaScript is so Enjoyable", 
-          about: `Fukk da .NET. Fukk da C-Fam. Fukk da PHP'n'Ruby. I got my ECMA-bro JS! 
-          We spent bout half year together n this man never let me ruin my proj's. 
-          Luv im so Hard. SlaTT*/3`
-        },
-        {
-          id: 2,
-          title: "JavaScript is better than.. ANYthin'",
-          about: `Fukk da .NET. Fukk da C-Fam. Fukk da PHP'n'Ruby. I got my ECMA-bro JS! 
-          We spent bout half year together n this man never let me ruin my proj's. 
-          Luv im so Hard. SlaTT*/3`
-        },
-        {
-          id: 3,
-          title: "Fukk dem other langs. Im on my ground",
-          about: `Fukk da .NET. Fukk da C-Fam. Fukk da PHP'n'Ruby. I got my ECMA-bro JS! 
-          We spent bout half year together n this man never let me ruin my proj's. 
-          Luv im so Hard. SlaTT*/3`
-        }
-      ],
-      title: "",
-      about: ""
+      prods: []
     }
   },
   methods: {
-    createPost() {
-      const newPost = {
-        id: Date.now(),
-        title: this.title,
-        about: this.about
-      }
-      this.posts.push(newPost);
-      this.title = this.about = "";
+    async getProds() {
+      const response = await axios.post("http://127.0.0.1:5050/api/products", {});
+      console.log(response);
+      this.prods = response.data
     }
   }
 }
 </script>
 
-<style lang="scss">  
+<style lang="scss" scoped>
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 40px;
-
-    input {
-      width: 200px;
-      height: 45px;
-      border: 2px solid teal;
-      border-radius: 8px;
-      font-family: monospace;
-      font-size: 20px;
-      padding-inline: 8px;
-      margin: 5px;
-    }
-
-    #pressme {
-      width: 140px;
-      height: 30px;
-      cursor: pointer;
-      font-family: monospace;
-      font-size: 20px;
-      border: 2px solid teal;
-      border-radius: 6px;
-      background: #FFF;
-      letter-spacing: -2px;
-      margin-top: 5px;
-      &:hover {
-        border-color: #000;
-      }
-    }
-  }
-  
-  .container {
+  #app {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    .wrapper {
-      max-width: 830px;
-      letter-spacing: -3px;
-      border: 2px solid teal;
-      padding: 15px;
-      margin: 20px 0;
-      &:first-child {
-        margin-top: 40px;
-      }
-      &:hover {
-        border-color: #000;
-      }
-    }
-
-    #title, #about {
+    padding: 50px;
+    #pressme {
+      cursor: pointer;
+      user-select: none;
+      width: 140px;
+      height: 50px;
+      border: 2.5px solid teal;
+      border-radius: 6px;
       font-family: monospace;
+      font-size: 20px;
+      letter-spacing: -2px;
+      background-color: white;
     }
-    #title {
-      font-size: 36px;
-      text-decoration: underline;
-      margin-bottom: 12px;
+    .container {
+      width: 100%;
+      margin: 100px 0;
+      display: flex;
+      justify-content: space-evenly;
+      text-align: center;
+      tran
+      & * {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        letter-spacing: -1px;
+        font-weight: 400;
+        color: teal;
+      }
     }
-
-    #about {
-      font-size: 26px;
-    } 
   }
 </style>
