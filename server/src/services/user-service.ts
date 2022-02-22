@@ -2,13 +2,13 @@ import bcrypt from "bcrypt";
 import {v4 as uuidv4} from "uuid";
 import { getEnv } from "../tools/env";
 import { User } from "../models/User";
-import { MailService } from "./mail-service";
-import { TokenService } from "./token-service";
+import MailService from "./mail-service";
+import TokenService from "./token-service";
 import { UserDto } from "../models/dtos";
 import { ApiError } from "../exceptions/api-errors";
 import { TokenTypes } from "../tools/enums";
 
-export const UserService = {
+class UserService {
   async bindTokens(user: object) {
     const userDto = new UserDto(user);
     const tokens = TokenService.generateTokens({...userDto});
@@ -17,7 +17,7 @@ export const UserService = {
       ...tokens,
       user: userDto
     };
-  },
+  }
 
   async signUp(email: string, password: string) {
     const result = await User.findOne({email});
@@ -31,7 +31,7 @@ export const UserService = {
     const user = await User.create({email, password: _password, activationLink});
     await MailService.sendActivation(email, `${getEnv("SERVICE_URL")}/activate/${activationLink}`);
     return this.bindTokens(user);
-  },
+  }
 
   async applyActivation(activationLink: string) {
     const user = await User.findOne({activationLink: activationLink});
@@ -40,7 +40,7 @@ export const UserService = {
     }
     user.isActivated = true;
     await user.save();
-  },
+  }
 
   async logIn(email: string, password: string) {
     const result = await User.findOne({email});
@@ -52,12 +52,12 @@ export const UserService = {
       throw ApiError.requestError("Неверный пароль");
     }
     return this.bindTokens(result);
-  },
+  }
 
   async logOut(refreshToken: string) {
     const token = await TokenService.removeToken(refreshToken);
     return token;
-  },
+  }
 
   async refresh(refreshToken: string) {
     if(!refreshToken) {
@@ -71,4 +71,6 @@ export const UserService = {
     const user = User.findById(result.id);
     return this.bindTokens(user);
   }
-};
+}
+
+export default new UserService();

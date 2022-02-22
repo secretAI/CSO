@@ -1,5 +1,5 @@
 import { ApiError } from "../exceptions/api-errors";
-import { TokenService } from "../services/token-service";
+import TokenService from "../services/token-service";
 import { TokenTypes } from "../tools/enums";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

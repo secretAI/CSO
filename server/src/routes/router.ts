@@ -7,13 +7,13 @@ import { Private } from "../controllers/private";
 import { authMiddleware } from "../middlewares/auth-middleware";
 
 const router = Router();
+
 router.use(cors({
   origin: "*",
   optionsSuccessStatus: 200
 }));
 
-
-router.post("/products", Web.getProducts);
+router.post("/products", Web.getAllProducts);
 
 router.post("/signup", 
   body("email").isEmail(),
@@ -28,7 +28,7 @@ router.get("/activate/:link", Auth.activate);
 
 router.get("/refresh", authMiddleware, Auth.refresh);
 
-router.get("/users", authMiddleware, Private.getUsers);
+router.get("/users", authMiddleware, Private.getAllUsers);
 
 router.post("/data", authMiddleware, Private.modifyProduct);
 

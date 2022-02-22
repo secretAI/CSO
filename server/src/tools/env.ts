@@ -8,6 +8,6 @@ export function getEnv(key: string): string {
     return value;
   }
 
-  console.log(`This ENV is missing: ${key}`);
+  console.log(`Переменная ${key} не найдена в ENV`);
   process.exit(1);
 }

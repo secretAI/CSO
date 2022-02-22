@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AdminService } from "../services/admin-service";
+import AdminService from "../services/admin-service";
+import ProductService from "../services/product-service";
 import { ApiError } from "../exceptions/api-errors";
 
 export const Private = {
-  async getUsers(req: any, res: any, next: any) {
+  async getAllUsers(req: any, res: any, next: any) {
     try {
       const {email} = req.body;
       if(!await AdminService.isRightful(email)) {
@@ -23,7 +24,7 @@ export const Private = {
       if(!await AdminService.isRightful(email)) {
         throw ApiError.requestError("Недостаточно прав");
       }
-      const changed = await AdminService.modifyProduct(title, prop, value);
+      const changed = await ProductService.modifyProduct(title, prop, value);
       return res.status(200).json(changed);
     }
     catch(err) {

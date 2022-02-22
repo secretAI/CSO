@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export const MailService = {
+class MailService {
   async sendActivation(to: string, link: string) {
     await transporter.sendMail({
       from: getEnv("SMTP_USER"),
@@ -24,4 +24,6 @@ export const MailService = {
       </div>`
     });
   }
-};
+}
+
+export default new MailService();

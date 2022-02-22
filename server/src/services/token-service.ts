@@ -5,7 +5,7 @@ import { Token } from "../models/Token";
 const jwtAccess: string = getEnv("JWT_SECRET");
 const jwtRefresh: string = getEnv("JWT_REFRESH");
 
-export const TokenService = {
+class TokenService {
   generateTokens(payload: object) {
     const accessToken = jwt.sign({payload}, jwtAccess, {
       expiresIn: 1800000 //30min
@@ -17,7 +17,7 @@ export const TokenService = {
       accessToken,
       refreshToken
     };
-  },
+  }
 
   async saveToken(userId: string, refreshToken: string) {
     const result = await Token.findOne({user: userId});
@@ -27,12 +27,12 @@ export const TokenService = {
     }
     const token = await Token.create({user: userId, reToken: refreshToken});
     return token;
-  },
+  }
 
   async removeToken(refreshToken: string) {
     const result = await Token.deleteOne({refreshToken});
     return result;
-  },
+  }
 
   validateToken(token: string, envSecret: string) {
     try {
@@ -43,10 +43,12 @@ export const TokenService = {
       console.log(err);
       return null;
     }
-  },
+  }
 
   async findToken(refreshToken: string) {
     const result = await Token.findOne({refreshToken});
     return result;
   }
-};
+}
+
+export default new TokenService();

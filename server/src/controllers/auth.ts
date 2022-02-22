@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { validationResult } from "express-validator";
-import { UserService } from "../services/user-service";
+import UserService from "../services/user-service";
 import { ApiError } from "../exceptions/api-errors";
 
 export const Auth = {

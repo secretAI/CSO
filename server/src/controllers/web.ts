@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { DataBaseError } from "../exceptions/db-errors";
-import { Box } from "../models/Goods";
+import ProductService from "../services/product-service";
 
 export const Web = {
-  async getProducts(req: any, res: any, next: any) {
+  async getAllProducts(req: any, res: any, next: any) {
     try {
-      console.log(req.body);
-      const result = await Box.find(req.body);
+      const result = await ProductService.getAllProducts();
       if(!result) {
         throw DataBaseError.dataNotFound("Товары не были получены");
       }
