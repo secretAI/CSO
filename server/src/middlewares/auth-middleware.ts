@@ -6,14 +6,10 @@ import { TokenTypes } from "../tools/enums";
 export function authMiddleware(req: any, res: any, next: any) {
   try {
     const authHeader = req.headers.authorization;
-    if(!authHeader) {
-      return next(ApiError.authError());
-    }
+    if(!authHeader) return next(ApiError.authError());
     const accessToken = authHeader.split(" ")[1];
     const validation = TokenService.validateToken(accessToken, TokenTypes.access);
-    if(!validation) {
-      return next(ApiError.authError());
-    }
+    if(!validation) return next(ApiError.authError());
     req.user = validation;
     next();
   }

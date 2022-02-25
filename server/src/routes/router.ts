@@ -13,7 +13,13 @@ router.use(cors({
   optionsSuccessStatus: 200
 }));
 
-router.post("/products", Web.getAllProducts);
+router.get("/", (req, res) => {
+  res.json({
+    statusCode: 200,
+    statusText: "handshake",
+    from: "http://127.0.0.1:5050/api/"
+  });
+});
 
 router.post("/signup", 
   body("email").isEmail(),
@@ -30,6 +36,10 @@ router.get("/refresh", authMiddleware, Auth.refresh);
 
 router.get("/users", authMiddleware, Private.getAllUsers);
 
-router.post("/data", authMiddleware, Private.modifyProduct);
+router.post("/data/all", Web.getAllProducts);
+
+router.post("/data/new", authMiddleware, Private.addNewProduct);
+
+router.post("/data/modify", authMiddleware, Private.modifyProduct);
 
 export default router;

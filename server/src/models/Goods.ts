@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
+import { ProductTypes } from "../tools/enums";
 
-export const Goods = new Schema ({
+export const Products = new Schema ({
   _thisId: {
     type: Schema.Types.ObjectId
   },
@@ -12,18 +13,29 @@ export const Goods = new Schema ({
     type: Date,
     default: Date.now()
   },
-  count: {
-    type: Number,
-    required: true
+  type: {
+    type: String,
+    required: true,
+    canBe: ProductTypes,
+    default: ProductTypes[1]
   },
-  price: {
+  startingPrice: {
     type: Number,
     required: true,
   },
   discount: {
     type: Number,
-    required: false
+    required: false,
+    default: 0
+  },
+  duration: {
+    type: Number,
+    unit: "day",
+    required: true
+  },
+  actualPrice: {
+    type: Number
   }
 });
 
-export const Box = model("Box", Goods);
+export const Prod = model("Prod", Products);

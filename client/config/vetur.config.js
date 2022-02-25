@@ -9,8 +9,7 @@ module.exports = {
     "../src",
     {
       root: "./src",
-      package: "./package.json",
-      tsconfig: "./tsconfig.json",
+      package: "./package.json"
     }
   ]
 };

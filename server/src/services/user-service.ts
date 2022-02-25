@@ -13,6 +13,7 @@ class UserService {
     const userDto = new UserDto(user);
     const tokens = TokenService.generateTokens({...userDto});
     await TokenService.saveToken(userDto.id, tokens.refreshToken);
+
     return {
       ...tokens,
       user: userDto
@@ -30,32 +31,30 @@ class UserService {
     const activationLink = uuidv4();
     const user = await User.create({email, password: _password, activationLink});
     await MailService.sendActivation(email, `${getEnv("SERVICE_URL")}/activate/${activationLink}`);
+
     return this.bindTokens(user);
   }
 
   async applyActivation(activationLink: string) {
     const user = await User.findOne({activationLink: activationLink});
-    if(!user) {
-      throw ApiError.requestError("Ошибка. Некорректная ссылка");
-    }
+    if(!user) throw ApiError.requestError("Ошибка. Некорректная ссылка");
     user.isActivated = true;
+
     await user.save();
   }
 
   async logIn(email: string, password: string) {
     const result = await User.findOne({email});
-    if(!result) {
-      throw ApiError.requestError(`Пользователь ${email} не найден`);
-    }
+    if(!result) throw ApiError.requestError(`Пользователь ${email} не найден`);
     const arePassesEqual = await bcrypt.compare(password, result.password);
-    if(!arePassesEqual) {
-      throw ApiError.requestError("Неверный пароль");
-    }
+    if(!arePassesEqual) throw ApiError.requestError("Неверный пароль");
+
     return this.bindTokens(result);
   }
 
   async logOut(refreshToken: string) {
     const token = await TokenService.removeToken(refreshToken);
+    
     return token;
   }
 
@@ -69,6 +68,7 @@ class UserService {
       throw ApiError.authError();
     }
     const user = User.findById(result.id);
+
     return this.bindTokens(user);
   }
 }

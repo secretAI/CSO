@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./routes/router";
-import { globals } from "./components/ui/globals";
+import router from "./routes/router.js";
+import { globals } from "./components/ui/globals.js";
 
 const app = createApp(App);
 

@@ -2,7 +2,7 @@
   "name": "cso-server",
   "version": "1.0.0",
   "description": "",
-  "main": "app.ts",
+  "main": "app.js",
   "module": "commonjs",
   "scripts": {
     "build": "webpack --mode production",
